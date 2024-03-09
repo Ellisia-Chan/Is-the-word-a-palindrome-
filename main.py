@@ -1,24 +1,27 @@
 import tkinter as tk
 
 def is_palindrome():
-    if var.get() == 1:
-        txt = ent_text.get().lower()
-        if txt == "":
-            lbl_txt.config(text="Please Enter a Word", bg="Cyan")
-        else:
-            if txt == txt[::-1]:
-                lbl_txt.config(text="Palindrome", bg="Green")
-            else:
-                lbl_txt.config(text="Not a Palindrome", bg="Red", fg="White")
-    elif var.get() == 2:
-        txt = ent_text.get().lower()
-        cleaned_txt = txt.split()
-        fin_Txt = "".join(cleaned_txt)
+    txt = ent_text.get().lower()
 
-        if fin_Txt == "":
+    if var.get() == 1:
+        txt_length = txt.split(' ')
+        if len(txt_length) >= 2:
+            lbl_txt.config(text="Palindrome or Not?", bg="white", fg="black")
+        else:
+            cleaned_txt = ''.join(char for char in txt if char.isalpha())
+            if cleaned_txt == "":
+                lbl_txt.config(text="Please Enter a Word", bg="Cyan")
+            else:
+                if cleaned_txt == txt[::-1]:
+                    lbl_txt.config(text="Palindrome", bg="Green")
+                else:
+                    lbl_txt.config(text="Not a Palindrome", bg="Red", fg="White")
+    elif var.get() == 2:
+        cleaned_txt = ''.join(char for char in txt if char.isalnum())
+        if cleaned_txt == "":
             lbl_txt.config(text="Please Enter a Sentence", bg="Cyan")
         else:
-            if fin_Txt == fin_Txt[::-1]:
+            if cleaned_txt == cleaned_txt[::-1]:
                 lbl_txt.config(text="Palindrome", bg="Green")
             else:
                 lbl_txt.config(text="Not a Palindrome", bg="Red", fg="White")
